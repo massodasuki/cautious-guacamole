@@ -9,7 +9,7 @@ class Team extends Model {
   public image!: string;
   public foundingDate!: Date;
   public status!: string;
-  public levelId!: number;
+  public levelId!: string;
   public userId!: number;
 
    // Timestamps
@@ -44,10 +44,12 @@ Team.init(
     levelId: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      field: 'level_id'
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      field: 'user_id'
     }
   },
   {

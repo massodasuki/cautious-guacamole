@@ -57,6 +57,8 @@ Level.init(
     sequelize,
     modelName: 'Level',
     tableName: 'levels', // Specify the table name
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   }
 );
 
