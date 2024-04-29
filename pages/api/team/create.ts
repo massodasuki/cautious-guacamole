@@ -13,7 +13,7 @@ const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
 
         const userId : any = getUserByToken(req, res);
-        const levelId : any = getBeginnerId();
+        const levelId : any = await getBeginnerId();
         // Create a new team
         try {
             const { name, foundingDate, status } = req.body;

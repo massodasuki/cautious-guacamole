@@ -9,12 +9,12 @@ class Level extends Model {
   public description!: string;
   public rank!: number;
   public status!: string;
-  
+
   // Timestamps
   public createdAt!: Date;
   public updatedAt!: Date;
 
-  static async findByRank(rank: number): Promise<Level | null> {
+  static findByRank(rank: number): Promise<Level | null> {
     return Level.findOne({ where: { rank } });
   }
 }
@@ -43,17 +43,7 @@ Level.init(
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
+    }
   },
   {
     sequelize,
