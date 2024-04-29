@@ -4,14 +4,20 @@ import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
 
 class Level extends Model {
-  public id!: number;
+  public id!: string;
   public type!: string;
   public description!: string;
   public rank!: number;
   public status!: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  static async findByRank(rank: number): Promise<Level | null> {
+    return Level.findOne({ where: { rank } });
+  }
 }
+
+
 
 Level.init(
   {

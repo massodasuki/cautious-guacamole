@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const secretKey = 'your-secret-key';
 
@@ -19,3 +20,22 @@ export function verifyToken(token: string): JwtPayload | null {
     return null;
   }
 }
+
+// Middleware to extract token from Bearer token request
+export function getUserByToken (req: NextApiRequest, res: NextApiResponse) {
+  const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+
+    try {
+        const decoded = jwt.verify(token, secretKey);
+        // Access user ID or any other data from the decoded payload
+        const userId = (decoded as { userId: number }).userId;
+        return userId;
+    } catch (error) {
+        return res.status(403).json({ message: 'Invalid token' });
+    }
+};

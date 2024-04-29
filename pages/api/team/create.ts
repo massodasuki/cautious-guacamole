@@ -1,13 +1,19 @@
 // api/team/create
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import Team from '../../../models/Team';
+import Team  from '../../../models/Team';
 import { v4 as uuidv4 } from 'uuid';
+import { getUserByToken } from '../../../utils/jwt';
+import { getBeginnerId } from '../../../services/levelServices';
+import Level from '@/models/Level';
 
 
 // TODO create by who ?
 const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
+
+        const userId : any = getUserByToken(req, res);
+        const levelId : any = getBeginnerId();
         // Create a new team
         try {
             const { name, foundingDate, status } = req.body;
@@ -16,7 +22,9 @@ const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
                 id,
                 name,
                 foundingDate,
-                status
+                status,
+                userId,
+                levelId
              });
 
             res.status(201).json({ data });
