@@ -9,8 +9,10 @@ class Level extends Model {
   public description!: string;
   public rank!: number;
   public status!: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  
+  // Timestamps
+  public createdAt!: Date;
+  public updatedAt!: Date;
 
   static async findByRank(rank: number): Promise<Level | null> {
     return Level.findOne({ where: { rank } });
