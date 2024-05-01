@@ -59,7 +59,7 @@ Match.init(
       allowNull: false,
     },
     hostTeamId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       field: 'host_team_id'
     },

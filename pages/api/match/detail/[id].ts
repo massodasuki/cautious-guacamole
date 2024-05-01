@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Venue from '@/models/Venue';
+import Match from '@/models/Match';
 
 // Handler function for GET requests
 const detailHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -11,18 +11,18 @@ const detailHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         try {
             // get team by id
-            const detailTeam = await Venue.findOne({
+            const detailTeam = await Match.findOne({
                 where: { 
                     id: id,
                     deleted: false }
               });
             if (detailTeam == null) {
-              res.status(404).json({ message: 'Venue not found' });
+              res.status(404).json({ message: 'Match not found' });
             } else {
               res.status(200).json({ data: detailTeam });
             }
           } catch (error) {
-            console.error('Error get venue:', error);
+            console.error('Error get match:', error);
             res.status(500).json({ message: 'Internal server error' });
           }
         } else {

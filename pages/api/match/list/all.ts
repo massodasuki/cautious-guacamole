@@ -1,24 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Team from '../../../../models/Team';
-import Venue from '@/models/Venue';
+import Match from '@/models/Match';
 
 // Handler function for GET requests
 const listHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'GET') {
         try {
             // get list of team
-            const detailTeam = await Venue.findAll({
+            const detailTeam = await Match.findAll({
                 where: {
                   deleted: false
                 }
               });
             if (detailTeam == null) {
-              res.status(404).json({ message: 'Venue not found' });
+              res.status(404).json({ message: 'Matches not found' });
             } else {
               res.status(200).json({ data: detailTeam });
             }
           } catch (error) {
-            console.error('Error get venue:', error);
+            console.error('Error get matches:', error);
             res.status(500).json({ message: 'Internal server error' });
           }
         } else {

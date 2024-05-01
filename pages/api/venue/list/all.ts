@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Team from '../../../../models/Team';
 import Venue from '@/models/Venue';
 
 // Handler function for GET requests
