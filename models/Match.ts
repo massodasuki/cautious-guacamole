@@ -9,15 +9,17 @@ class Match extends Model {
   public id!: number;
   public startOn!: Date;
   public expiredOn!: Date;
-  public timeStart!: Date;
-  public timeEnd!: Date;
+  public timeStart!: String;
+  public timeEnd!: String;
   public status!: string;
-  public hostTeamId!: number;
-  public guestTeamId!: number;
-  public venueId!: number;
-  public userId!: number;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public hostTeamId!: string;
+  public guestTeamId!: string;
+  public venueId!: string;
+  public userId!: string;
+
+  // Timestamps
+  public createdAt!: Date;
+  public updatedAt!: Date;
 
   // Define associations if needed
 //   public hostTeam?: Team;
@@ -43,12 +45,12 @@ Match.init(
       field: 'expired_on'
     },
     timeStart: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
       field: 'time_start'
     },
     timeEnd: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
       field: 'time_end'
     },

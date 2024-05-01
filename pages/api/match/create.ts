@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 // TODO create by who ?
 const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        
         try {
             const {
                 startOn,
