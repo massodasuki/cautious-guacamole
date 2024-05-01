@@ -10,7 +10,8 @@ class Team extends Model {
   public foundingDate!: Date;
   public status!: string;
   public levelId!: string;
-  public userId!: number;
+  public userId!: string;
+  public deleted!: boolean;
 
    // Timestamps
    public createdAt!: Date;
@@ -47,9 +48,13 @@ Team.init(
       field: 'level_id'
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       field: 'user_id'
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   },
   {
