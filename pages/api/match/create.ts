@@ -1,13 +1,15 @@
-// api/team/create
+// api/match/create
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import Match from '../../../models/Match';
 import { v4 as uuidv4 } from 'uuid';
-
+import { getUserByToken } from '../../../utils/jwt';
 
 // TODO create by who ?
 const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
+        const userId : any = getUserByToken(req, res);
+
         try {
             const {
                 startOn,
@@ -28,7 +30,8 @@ const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
                 timeEnd,
                 venueId,
                 hostTeamId,
-                status
+                status, 
+                userId : userId
             });
 
             res.status(201).json({ data });

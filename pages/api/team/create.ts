@@ -5,7 +5,6 @@ import Team  from '../../../models/Team';
 import { v4 as uuidv4 } from 'uuid';
 import { getUserByToken } from '../../../utils/jwt';
 import { getBeginnerId } from '../../../services/levelServices';
-import Level from '@/models/Level';
 
 
 // TODO create by who ?
