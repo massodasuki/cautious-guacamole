@@ -1,8 +1,7 @@
 // pages/api/teams/update/[id].ts
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import Team from '../../../../models/Team';
-import { v4 as uuidv4 } from 'uuid';
+import Venue from '@/models/Venue';
 
 
 // TODO update by who ?
@@ -15,16 +14,16 @@ const updateHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         try {
             // Update team by id
-            const updatedTeam = await Team.update(body, {
+            const updatedTeam = await Venue.update(body, {
               where: { id: id },
             });
             if (updatedTeam[0] === 0) {
-              res.status(404).json({ message: 'Team not found' });
+              res.status(404).json({ message: 'Venue not found' });
             } else {
-              res.status(200).json({ message: 'Team updated successfully' });
+              res.status(200).json({ message: 'Venue updated successfully' });
             }
           } catch (error) {
-            console.error('Error updating team:', error);
+            console.error('Error updating venue:', error);
             res.status(500).json({ message: 'Internal server error' });
           }
         } else {

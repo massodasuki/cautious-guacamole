@@ -26,6 +26,7 @@ const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
                 longitude,
                 address,
                 status,
+                deleted: 0
             });
 
             res.status(201).json({ data });

@@ -24,7 +24,8 @@ const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
                 foundingDate,
                 status,
                 userId,
-                levelId
+                levelId,
+                deleted: 0
              });
 
             res.status(201).json({ data });

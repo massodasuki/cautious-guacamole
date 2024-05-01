@@ -8,6 +8,7 @@ class Venue extends Model {
   public longitude!: number;
   public address!: string;
   public status!: string;
+  public deleted!: boolean;
 
   // Timestamps
   public createdAt!: Date;
@@ -39,6 +40,10 @@ Venue.init(
     },
     status: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     }
   },
