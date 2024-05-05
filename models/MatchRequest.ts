@@ -6,52 +6,50 @@ import { sequelize } from '../config/database';
 // import Team from './Team'; // Importing Team model if needed
 
 class MatchRequest extends Model {
-  public id!: number;
-  public matchId!: number;
-  public requestingTeamId!: number;
+  public id!: string;
+  public match_id!: string;
+  public team_id!: string;
+  public user_id!: string;
   public status!: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 
-  // Define associations if needed
-  // public match?: Match;
-  // public requestingTeam?: Team;
+    // Timestamps
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 MatchRequest.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       autoIncrement: true,
     },
-    matchId: {
-      type: DataTypes.INTEGER,
+    teamId: {
+      type: DataTypes.STRING,
       allowNull: false,
+      field: 'team_id'
     },
-    requestingTeamId: {
-      type: DataTypes.INTEGER,
+    matchId: {
+      type: DataTypes.STRING,
       allowNull: false,
+      field: 'match_id'
+    },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'user_id'
     },
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
+    }
   },
   {
     sequelize,
     modelName: 'MatchRequest',
     tableName: 'match_requests', // Specify the table name
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   }
 );
 

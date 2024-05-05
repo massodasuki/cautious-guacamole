@@ -25,6 +25,9 @@ class Match extends Model {
 //   public hostTeam?: Team;
 //   public guestTeam?: Team;
 //   public venue?: Venue;
+  static findById(id: string): Promise<Match | null> {
+    return Match.findOne({ where: { id } });
+  }
 }
 
 Match.init(
