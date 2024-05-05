@@ -45,6 +45,7 @@ Venue.init(
     deleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: 0
     }
   },
   {

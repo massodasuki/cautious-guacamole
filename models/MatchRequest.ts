@@ -7,10 +7,11 @@ import { sequelize } from '../config/database';
 
 class MatchRequest extends Model {
   public id!: string;
-  public match_id!: string;
-  public team_id!: string;
-  public user_id!: string;
+  public matchId!: string;
+  public teamId!: string;
+  public userId!: string;
   public status!: string;
+  public deleted!: boolean;
 
     // Timestamps
   public createdAt!: Date;
@@ -22,7 +23,7 @@ MatchRequest.init(
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
+      allowNull: false,
     },
     teamId: {
       type: DataTypes.STRING,
@@ -42,6 +43,11 @@ MatchRequest.init(
     status: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: 0
     }
   },
   {

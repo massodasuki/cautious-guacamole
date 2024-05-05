@@ -5,6 +5,7 @@ import MatchRequest from '../../../models/MatchRequest';
 import { v4 as uuidv4 } from 'uuid';
 import { getUserByToken } from '../../../utils/jwt';
 import { isMatchExist} from '../../../services/matchServices';
+import { Status  } from '../../../enum/status';
 
 // TODO create by who ?
 const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -33,9 +34,11 @@ const createHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
             const id: string = uuidv4();
             const data = await MatchRequest.create({
+                id,
                 matchId,
                 teamId,
                 userId : userID,
+                status: Status.SENDING
             });
 
             res.status(201).json({ data });
